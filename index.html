@@ -37,7 +37,7 @@
             <button id="calculate-btn" class="bg-blue-600 rounded px-2 py-1 font-medium">Calculate</button>
 
             <h2 class="text-center font-medium mb-5">Total Expense: <span id="total-expense">00</span></h2>
-            <h2 class="text-center font-medium mb-5">Balance: <span id="main-balance">00</span></h2>
+            <h2 class="text-center font-medium mb-5">Balance: <span id="balance">00</span></h2>
             
             <div>
                 <label>Save: </label><input id='save-field' class="border rounded mb-4 3/4 border-gray-400 p-1" type="text"><Span>%</Span>
@@ -50,108 +50,7 @@
         </section>
     </Main>
 
-    <script>
-        function getInputValue(fieldId){
-            const inputField = document.getElementById(fieldId);
-            const inputAmount = parseInt(inputField.value);
-            inputField.value = '';
-            return inputAmount;
-
-        }
-
-        function updateTotalBalance(totalFieldId, incomeAmount, totalExpense){
-            const balance = document.getElementById(totalFieldId);
-            const updateBalance = incomeAmount - totalExpense;
-            balance.innerText = updateBalance;
-            
-        }
-
-        function balanceAfterSaving(){
-            const saveField = document.getElementById('save-field')
-            const saveAmount = parseInt(saveField.value);
-
-            const incomeField = document.getElementById('income-field');
-            const incomeAmount = parseInt(incomeField.value);
-
-            const save = document.getElementById('save');
-            const saveParc = saveAmount / 100;
-            const saveTotalAmount = saveParc * incomeAmount;
-            save.innerText = saveTotalAmount;
-        }
-
-        document.getElementById('calculate-btn').addEventListener('click', function(){
-            // const foodField = document.getElementById('food-field');
-            // const foodAmount = parseInt(foodField.value);
-            const foodAmount = getInputValue('food-field');
-            
-            // const rentField = document.getElementById('rent-field');
-            // const rentAmount = parseInt(rentField.value);
-            const rentAmount = getInputValue('rent-field');
-
-            // const clothsField = document.getElementById('cloths-field');
-            // const clothsAmount = parseInt(clothsField.value);
-            const clothsAmount = getInputValue('cloths-field');
-
-            const totalExpense = foodAmount + rentAmount + clothsAmount;
-            
-            //update toral expense
-            const totalExpenseNumber = document.getElementById('total-expense');
-            totalExpenseNumber.innerText = totalExpense;
-
-            //getting income amount
-            // const incomeField = document.getElementById('income-field');
-            // const incomeAmount = parseInt(incomeField.value);
-            const incomeAmount = getInputValue('income-field');
-
-            //update balance
-            // const balance = document.getElementById('balance');
-            // const updateBalance = incomeAmount - totalExpense;
-            // balance.innerText = updateBalance;
-            updateTotalBalance('main-balance', incomeAmount, totalExpense);
-        })
-
-        document.getElementById('save-btn').addEventListener('click', function(){
-            // const saveField = document.getElementById('save-field')
-            // const saveAmount = parseInt(saveField.value);
-            const saveAmount = getInputValue('save-field');
-            
-            // const incomeField = document.getElementById('income-field');
-            // const incomeAmount = parseInt(incomeField.value);
-            const incomeAmount = getInputValue('income-field');
-
-            // const save = document.getElementById('save');
-            // const saveParc = saveAmount / 100;
-            // const saveTotalAmount = saveParc * incomeAmount;
-            // save.innerText = saveTotalAmount;
-            const saveTotalAmount = balanceAfterSaving();
-
-            // const foodField = document.getElementById('food-field');
-            // const foodAmount = parseInt(foodField.value);
-            const foodAmount = getInputValue('food-field');
-            
-            // const rentField = document.getElementById('rent-field');
-            // const rentAmount = parseInt(rentField.value);
-            const rentAmount = getInputValue('rent-field');
-
-            // const clothsField = document.getElementById('cloths-field');
-            // const clothsAmount = parseInt(clothsField.value);
-            const clothsAmount = getInputValue('cloths-field');
-
-            const totalExpense = foodAmount + rentAmount + clothsAmount;
-
-            // const balance = document.getElementById('balance');
-            // const updateBalance = incomeAmount - totalExpense;
-            // balance.innerText = updateBalance;
-            // const updateBalance = updateTotalBalance('balance'); <<- extra
-            updateTotalBalance('main-balance',incomeAmount, totalExpense);
-
-            // const remainingBalance = document.getElementById('remaining-balance');
-            // const remainingTotalBalance = updateBalance - saveTotalAmount;
-            // remainingBalance.innerText = remainingTotalBalance;
-            // const remainingTotalBalance = updateTotalBalance('remaining-balance'); <<- extra
-            updateTotalBalance('remaining-balance', incomeAmount, totalExpense);
-        })
-    </script>
+    <script src="statebank.js"></script>
 </body>
 </html>
 
