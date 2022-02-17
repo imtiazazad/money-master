@@ -66,6 +66,19 @@
             
         }
 
+        function balanceAfterSaving(){
+            const saveField = document.getElementById('save-field')
+            const saveAmount = parseInt(saveField.value);
+
+            const incomeField = document.getElementById('income-field');
+            const incomeAmount = parseInt(incomeField.value);
+
+            const save = document.getElementById('save');
+            const saveParc = saveAmount / 100;
+            const saveTotalAmount = saveParc * incomeAmount;
+            save.innerText = saveTotalAmount;
+        }
+
         document.getElementById('calculate-btn').addEventListener('click', function(){
             // const foodField = document.getElementById('food-field');
             // const foodAmount = parseInt(foodField.value);
@@ -106,10 +119,11 @@
             // const incomeAmount = parseInt(incomeField.value);
             const incomeAmount = getInputValue('income-field');
 
-            const save = document.getElementById('save');
-            const saveParc = saveAmount / 100;
-            const saveTotalAmount = saveParc * incomeAmount;
-            save.innerText = saveTotalAmount;
+            // const save = document.getElementById('save');
+            // const saveParc = saveAmount / 100;
+            // const saveTotalAmount = saveParc * incomeAmount;
+            // save.innerText = saveTotalAmount;
+            const saveTotalAmount = balanceAfterSaving();
 
             // const foodField = document.getElementById('food-field');
             // const foodAmount = parseInt(foodField.value);
