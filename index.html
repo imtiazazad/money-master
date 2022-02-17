@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>State Bank</title>
+</head>
+<body class="p-2">
+    <header>
+    <h1 class="text-sky-800 text-4xl font-semibold text-center mt-4 mb-4">State Bank</h1>
+    </header>    
+
+    <Main class="2xl:flex xl:flex lg:flex justify-center">
+        <section class="w-5/12 ">
+            <img src="money.jpg" alt="" srcset="">
+        </section>
+        <section class="min-h-screen bg-gray-100 flex flex-col items-center justify-center w-5/12 ml-5">
+            
+            <h2 class="text-center font-medium mb-5">Income</h2>
+            <div>
+                <label>Income: </label><input id="income-field" class="border rounded mb-4 3/4 border-gray-400 p-1" type="text">
+            </div>
+
+            <h2 class="text-center font-medium mb-5">Expense</h2>
+            <div>
+                <label>Food: </label><input id="food-field" class="border rounded mb-4 3/4 border-gray-400 p-1" type="text">
+            </div>
+            <div>
+                <label>Rent: </label><input id="rent-field" class="border rounded mb-4 3/4 border-gray-400 p-1" type="text">
+            </div>
+            <div>
+                <label>Cloths: </label><input id="cloths-field" class="border rounded mb-4 3/4 border-gray-400 p-1" type="text">
+            </div>
+
+            <button id="calculate-btn" class="bg-blue-600 rounded px-2 py-1 font-medium">Calculate</button>
+
+            <h2 class="text-center font-medium mb-5">Total Expense: <span id="total-expense">00</span></h2>
+            <h2 class="text-center font-medium mb-5">Balance: <span id="balance">00</span></h2>
+            
+            <div>
+                <label>Save: </label><input id='save-field' class="border rounded mb-4 3/4 border-gray-400 p-1" type="text"><Span>%</Span>
+                <button id="save-btn" class="bg-blue-600 rounded px-2 py-1 font-medium">Save</button>
+            </div>
+
+            <h2 class="text-center font-medium mb-5">Save Amount: <span id="save">00</span> </h2>
+            <h2 class="text-center font-medium mb-5">Remaining Balance: <span id="remaining-balance">00</span> </h2>
+
+        </section>
+    </Main>
+
+    <script>
+        function getInputValue(){
+            const foodField = document.getElementById('food-field');
+            const foodAmount = parseInt(foodField.value);
+            return foodAmount;
+        }
+
+
+        document.getElementById('calculate-btn').addEventListener('click', function(){
+            // const foodField = document.getElementById('food-field');
+            // const foodAmount = parseInt(foodField.value);
+            const foodAmount = getInputValue();
+            
+            const rentField = document.getElementById('rent-field');
+            const rentAmount = parseInt(rentField.value);
+
+            const clothsField = document.getElementById('cloths-field');
+            const clothsAmount = parseInt(clothsField.value);
+
+            const totalExpense = foodAmount + rentAmount + clothsAmount;
+            
+            //update toral expense
+            const totalExpenseNumber = document.getElementById('total-expense');
+            totalExpenseNumber.innerText = totalExpense;
+
+            //getting income amount
+            const incomeField = document.getElementById('income-field');
+            const incomeAmount = parseInt(incomeField.value);
+
+            //update balance
+            const balance = document.getElementById('balance');
+            const updateBalance = incomeAmount - totalExpense;
+            balance.innerText = updateBalance;
+        })
+
+        document.getElementById('save-btn').addEventListener('click', function(){
+            const saveField = document.getElementById('save-field')
+            const saveAmount = parseInt(saveField.value);
+            
+            const incomeField = document.getElementById('income-field');
+            const incomeAmount = parseInt(incomeField.value);
+
+            const save = document.getElementById('save');
+            const saveParc = saveAmount / 100;
+            const saveTotalAmount = saveParc * incomeAmount;
+            save.innerText = saveTotalAmount;
+
+            const foodField = document.getElementById('food-field');
+            const foodAmount = parseInt(foodField.value);
+            
+            const rentField = document.getElementById('rent-field');
+            const rentAmount = parseInt(rentField.value);
+
+            const clothsField = document.getElementById('cloths-field');
+            const clothsAmount = parseInt(clothsField.value);
+
+            const totalExpense = foodAmount + rentAmount + clothsAmount;
+
+            const balance = document.getElementById('balance');
+            const updateBalance = incomeAmount - totalExpense;
+            balance.innerText = updateBalance;
+
+            const remainingBalance = document.getElementById('remaining-balance');
+            const remainingTotalBalance = updateBalance - saveTotalAmount;
+            remainingBalance.innerText = remainingTotalBalance;
+        })
+    </script>
+</body>
+</html>
+
